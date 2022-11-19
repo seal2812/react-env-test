@@ -25,7 +25,7 @@ jobs:
 
 
     - name: Store variables0
-        run: |
+      run: |
           echo "REACT_APP_SERKAN=serkasssssssssssssssssssss0000000000"
 
 
@@ -39,26 +39,19 @@ jobs:
           REACT_APP_SERKAN: 'serkan: from envenv2'
           REACT_APP_SEAL: 'seal: from envenv2'
     
-    - name: Store variables
-        run: |
-          echo "REACT_APP_SERKAN=serkasssssssssssssssssssss"
-
-
     - name: npm install, build, and test
       run: | 
         npm install
         npm run build --if-present
 
+      env:
+        SERKAN: 123
+        REACT_APP_SERKAN: 321
+
     - name: add process.json
       run: |
         echo '{ script: "serve", env: { PM2_SERVE_SPA: "true", PM2_SERVE_HOMEPAGE: "/index.html" } }' >> build/process.json
-         
-        
-    - name: Store variables2
-        run: |
-          echo "REACT_APP_SERKAN=serkasssssssssssssssssssss2222222222222222"
-
-
+          
     - name: 'Deploy to Azure WebApp'
       uses: azure/webapps-deploy@v2
       with:
