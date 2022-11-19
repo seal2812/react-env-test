@@ -14,6 +14,15 @@ console.log(process.env["SERKAN"]);
 console.log("process.env.REACT_APP_SERKAN");
 console.log(process.env.REACT_APP_SERKAN);
 console.log(process.env["REACT_APP_SERKAN"]);
+
+
+console.log("process.env.SEAL");
+console.log(process.env.SEAL);
+console.log(process.env["SEAL"]);
+
+console.log("process.env.REACT_APP_SEAL");
+console.log(process.env.REACT_APP_SEAL);
+console.log(process.env["REACT_APP_SEAL"]);
  
 
 export default function Login() {    
@@ -24,7 +33,7 @@ export default function Login() {
                     <div className="title_logo">
                         <img alt="dsb logo" src="https://upload.wikimedia.org/wikipedia/en/8/87/DSB_company_logo.svg" />
                         <h2 className="fp-title">Graffitidetection tool</h2>
-                        <div className="madeby">Made by Team AI...5</div>
+                        <div className="madeby">Made by Team AI...6</div>
                     </div>
                     <SignInButton />
                 </div>
