@@ -1,0 +1,43 @@
+@font-face {
+  font-family: "ViaOffice-Regular";
+  src: local(ViaOffice-Regular),
+       url("./styles/fonts/ViaOffice-Regular.otf") format("truetype");
+}
+
+@font-face {
+  font-family: "ViaOffice-Bold";
+  src: local(ViaOffice-Bold),
+       url("./styles/fonts/ViaOffice-Bold.otf") format("truetype");
+}
+
+@font-face {
+  font-family: "ViaOffice-BoldItalic";
+  src: local(ViaOffice-BoldItalic),
+       url("./styles/fonts/ViaOffice-BoldItalic.otf") format("truetype");
+}
+
+@font-face {
+  font-family: "ViaOffice-Italic";
+  src: local(ViaOffice-Italic),
+       url("./styles/fonts/ViaOffice-Italic.otf") format("truetype");
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap');
+
+body{
+  font-family: 'Nunito', sans-serif;
+color: #25396f;
+  /* font-family: ViaOffice-Regular,sans-serif !important; */
+  background: #f2f7ff!important;  
+ }
+
+
+ .body .page{
+  margin-bottom: 40px;
+ }
+ 
+ .body .page-title h4{
+  font-weight: 700;
+
+ }

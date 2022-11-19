@@ -1,0 +1,37 @@
+name: Build and Deploy
+on:
+  push:
+    branches:
+      - master
+      - serkan-test
+  pull_request:
+      types: [opened, synchronize, reopened]  
+env:
+  AZURE_WEBAPP_NAME: verificationtool    
+  AZURE_WEBAPP_PACKAGE_PATH: '.'              
+  NODE_VERSION: '16.x' 
+jobs: 
+  build-and-deploy: 
+    name: Build and Deploy
+    runs-on: dsb_ubuntu 
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Use Node.js ${{ env.NODE_VERSION }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ env.NODE_VERSION }} 
+    - name: npm install, build, and test
+      run: | 
+        npm install
+        npm run build --if-present
+    - name: add process.json
+      run: |
+        echo '{ script: "serve", env: { PM2_SERVE_SPA: "true", PM2_SERVE_HOMEPAGE: "/index.html" } }' >> build/process.json
+    - name: 'Deploy to Azure WebApp'
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: ${{ env.AZURE_WEBAPP_NAME }}
+        slot-name: 'dev'
+        publish-profile: ${{ secrets.AZURE_WEBAPP_DEV_PUBLISH_PROFILE }}
+        package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
