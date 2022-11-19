@@ -22,13 +22,6 @@ jobs:
       SEAL: 'seal: from envenv00'
     steps:
     - uses: actions/checkout@v3
-
-
-    - name: Store variables0
-      run: |
-          echo "REACT_APP_SERKAN=serkasssssssssssssssssssss0000000000"
-
-
     - name: Use Node.js ${{ env.NODE_VERSION }}
       uses: actions/setup-node@v3
       with:
