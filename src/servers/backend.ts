@@ -2,7 +2,7 @@ import { ImageType } from "../enums/types";
 import { Image } from "../models/Models";  
 import { Mapper } from "../mapper/Mapper"; 
 
-const baseurl = "https://verificationtool-api-dev.azure.dsb.dk";   
+const baseurl = "";   
 // const baseurl = "https://localhost:44313";   
  
 export class Backend {
