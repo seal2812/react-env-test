@@ -20,9 +20,11 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ env.NODE_VERSION }} 
+        REACT_APP_SERKAN: 'serkan: from envwidth'
+        REACT_APP_SEAL: 'seal: from envwidth'
       env:
-          SERKAN: serkan-yolo
-          SEAL: seal-yolo
+          REACT_APP_SERKAN: 'serkan: from envenv'
+          REACT_APP_SEAL: 'seal: from envenv'
 
     - name: npm install, build, and test
       run: | 

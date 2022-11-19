@@ -4,21 +4,9 @@ import "../styles/login.css";
 console.log("process.env");
 console.log(process.env);
 
-console.log("process.env.NODE_ENV");
-console.log(process.env.NODE_ENV);
-
-console.log("process.env.SERKAN");
-console.log(process.env.SERKAN);
-console.log(process.env["SERKAN"]);
-
 console.log("process.env.REACT_APP_SERKAN");
 console.log(process.env.REACT_APP_SERKAN);
 console.log(process.env["REACT_APP_SERKAN"]);
-
-
-console.log("process.env.SEAL");
-console.log(process.env.SEAL);
-console.log(process.env["SEAL"]);
 
 console.log("process.env.REACT_APP_SEAL");
 console.log(process.env.REACT_APP_SEAL);
