@@ -13,6 +13,9 @@ jobs:
   build-and-deploy: 
     name: Build and Deploy
     runs-on: ubuntu-latest 
+    env:
+      REACT_APP_SERKAN: 'serkan: from envenv0'
+      REACT_APP_SEAL: 'seal: from envenv0'
     steps:
     - uses: actions/checkout@v3
 
@@ -20,11 +23,11 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ env.NODE_VERSION }} 
-        REACT_APP_SERKAN: 'serkan: from envwidth'
-        REACT_APP_SEAL: 'seal: from envwidth'
+        REACT_APP_SERKAN: 'serkan: from envwidth1'
+        REACT_APP_SEAL: 'seal: from envwidth1'
       env:
-          REACT_APP_SERKAN: 'serkan: from envenv'
-          REACT_APP_SEAL: 'seal: from envenv'
+          REACT_APP_SERKAN: 'serkan: from envenv2'
+          REACT_APP_SEAL: 'seal: from envenv2'
 
     - name: npm install, build, and test
       run: | 
