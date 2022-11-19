@@ -23,6 +23,12 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+
+    - name: Store variables0
+      run: |
+          echo "REACT_APP_SERKAN=serkasssssssssssssssssssss0000000000"
+
+
     - name: Use Node.js ${{ env.NODE_VERSION }}
       uses: actions/setup-node@v3
       with:
@@ -34,7 +40,7 @@ jobs:
           REACT_APP_SEAL: 'seal: from envenv2'
     
     - name: Store variables
-        run: |
+      run: |
           echo "REACT_APP_SERKAN=serkasssssssssssssssssssss"
 
 
@@ -49,7 +55,7 @@ jobs:
          
         
     - name: Store variables2
-        run: |
+      run: |
           echo "REACT_APP_SERKAN=serkasssssssssssssssssssss2222222222222222"
 
 
