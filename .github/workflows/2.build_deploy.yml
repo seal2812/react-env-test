@@ -8,7 +8,10 @@ on:
 env:
   AZURE_WEBAPP_NAME: react-seal-test    
   AZURE_WEBAPP_PACKAGE_PATH: '.'              
-  NODE_VERSION: '16.x'  
+  NODE_VERSION: '16.x' 
+  REACT_APP_SERKAN_CUSTOM: 'build'
+  REACT_APP_SERKAN_BUILD: 'build'
+  REACT_APP_SERKAN_AZURE: 'build'
 
 jobs: 
   build-and-deploy: 
@@ -30,7 +33,7 @@ jobs:
     - name: create env file
       run: |
         touch .env
-        echo REACT_APP_SERKAN=${{ secrets.SERKANSECRET }} >> .env
+        echo REACT_APP_SERKAN_CUSTOM=${{ secrets.SERKANSECRET }} >> .env
 
     - name: add process.json
       run: |

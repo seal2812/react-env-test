@@ -4,13 +4,17 @@ import "../styles/login.css";
 console.log("process.env");
 console.log(process.env);
 
-console.log("process.env.REACT_APP_SERKAN");
-console.log(process.env.REACT_APP_SERKAN);
-console.log(process.env["REACT_APP_SERKAN"]);
+console.log("process.env.REACT_APP_SERKAN_AZURE");
+console.log(process.env.REACT_APP_SERKAN_AZURE);
+console.log(process.env["REACT_APP_SERKAN_AZURE"]);
 
-console.log("process.env.REACT_APP_SEAL");
-console.log(process.env.REACT_APP_SEAL);
-console.log(process.env["REACT_APP_SEAL"]);
+console.log("process.env.REACT_APP_SERKAN_CUSTOM");
+console.log(process.env.REACT_APP_SERKAN_CUSTOM);
+console.log(process.env["REACT_APP_SERKAN_CUSTOM"]);
+
+console.log("process.env.REACT_APP_SERKAN_BUILD");
+console.log(process.env.REACT_APP_SERKAN_BUILD);
+console.log(process.env["REACT_APP_SERKAN_BUILD"]);
  
 
 export default function Login() {    
@@ -21,7 +25,7 @@ export default function Login() {
                     <div className="title_logo">
                         <img alt="dsb logo" src="https://upload.wikimedia.org/wikipedia/en/8/87/DSB_company_logo.svg" />
                         <h2 className="fp-title">Graffitidetection tool</h2>
-                        <div className="madeby">Made by Team AI...9</div>
+                        <div className="madeby">Made by Team AI...9.1</div>
                     </div>
                     <SignInButton />
                 </div>
