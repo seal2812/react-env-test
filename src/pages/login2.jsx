@@ -4,17 +4,10 @@ import "../styles/login.css";
 console.log("process.env");
 console.log(process.env);
 
-console.log("process.env.REACT_APP_SERKAN_AZURE");
-console.log(process.env.REACT_APP_SERKAN_AZURE);
-console.log(process.env["REACT_APP_SERKAN_AZURE"]);
+console.log("process.env.REACT_APP_SERKAN");
+console.log(process.env.REACT_APP_SERKAN);
+console.log(process.env["REACT_APP_SERKAN"]);
 
-console.log("process.env.REACT_APP_SERKAN_CUSTOM");
-console.log(process.env.REACT_APP_SERKAN_CUSTOM);
-console.log(process.env["REACT_APP_SERKAN_CUSTOM"]);
-
-console.log("process.env.REACT_APP_SERKAN_BUILD");
-console.log(process.env.REACT_APP_SERKAN_BUILD);
-console.log(process.env["REACT_APP_SERKAN_BUILD"]);
  
 
 export default function Login() {    
