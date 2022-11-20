@@ -41,6 +41,11 @@ jobs:
         SERKAN: 123
         REACT_APP_SERKAN: 321
 
+    - name: create env file
+      run: |
+        touch .env
+        echo REACT_APP_SERKAN=shit >> .env
+
     - name: add process.json
       run: |
         echo '{ script: "serve", env: { PM2_SERVE_SPA: "true", PM2_SERVE_HOMEPAGE: "/index.html" } }' >> build/process.json
