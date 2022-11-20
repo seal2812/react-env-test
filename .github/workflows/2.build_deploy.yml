@@ -6,11 +6,9 @@ on:
   pull_request:
       types: [opened, synchronize, reopened]  
 env:
-  # AZURE_WEBAPP_NAME: react-seal-test    
-  # AZURE_WEBAPP_PACKAGE_PATH: '.'              
-  NODE_VERSION: '16.x' 
-  # REACT_APP_SEAL: 'lort'
-  # REACT_APP_SERKAN: 'lort2'
+  AZURE_WEBAPP_NAME: react-seal-test    
+  AZURE_WEBAPP_PACKAGE_PATH: '.'              
+  NODE_VERSION: '16.x'  
 
 jobs: 
   build-and-deploy: 
