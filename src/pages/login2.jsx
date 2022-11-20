@@ -21,7 +21,7 @@ export default function Login() {
                     <div className="title_logo">
                         <img alt="dsb logo" src="https://upload.wikimedia.org/wikipedia/en/8/87/DSB_company_logo.svg" />
                         <h2 className="fp-title">Graffitidetection tool</h2>
-                        <div className="madeby">Made by Team AI...8</div>
+                        <div className="madeby">Made by Team AI...9</div>
                     </div>
                     <SignInButton />
                 </div>

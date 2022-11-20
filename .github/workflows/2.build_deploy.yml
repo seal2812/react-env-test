@@ -6,11 +6,11 @@ on:
   pull_request:
       types: [opened, synchronize, reopened]  
 env:
-  AZURE_WEBAPP_NAME: react-seal-test    
-  AZURE_WEBAPP_PACKAGE_PATH: '.'              
+  # AZURE_WEBAPP_NAME: react-seal-test    
+  # AZURE_WEBAPP_PACKAGE_PATH: '.'              
   NODE_VERSION: '16.x' 
-  REACT_APP_SEAL: 'lort'
-  REACT_APP_SERKAN: 'lort2'
+  # REACT_APP_SEAL: 'lort'
+  # REACT_APP_SERKAN: 'lort2'
 
 jobs: 
   build-and-deploy: 
@@ -29,10 +29,10 @@ jobs:
         npm install
         npm run build --if-present
 
-    # - name: create env file
-    #   run: |
-    #     touch .env
-    #     echo REACT_APP_SERKAN=${{ secrets.SERKANSECRET }} >> .env
+    - name: create env file
+      run: |
+        touch .env
+        echo REACT_APP_SERKAN=${{ secrets.SERKANSECRET }} >> .env
 
     - name: add process.json
       run: |
