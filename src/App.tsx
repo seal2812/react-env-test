@@ -1,28 +1,38 @@
-import { Routes, Route } from "react-router-dom"; 
-import FeedbackReportPage from "./pages/v1/feedbackreport-page";
-import SapReportPage from "./pages/v1/sapreport-page";
-import {AuthenticatedTemplate, UnauthenticatedTemplate} from "@azure/msal-react";
-import Login from "./pages/login2"; 
-import SapOverview from "./pages/v2/sapoverview";
+import React from 'react';
+import logo from './logo.svg';
+import './App.css';
+
+console.log("process.env");
+console.log(process.env);
+
+console.log("process.env.REACT_APP_SERKAN");
+console.log(process.env.REACT_APP_SERKAN);
+console.log(process.env["REACT_APP_SERKAN"]);
+
+console.log("process.env.REACT_APP_SERKAN_2");
+console.log(process.env.REACT_APP_SERKAN_2);
+console.log(process.env["REACT_APP_SERKAN_2"]);
 
 
-export default function App() {
+function App() {
   return (
-    <div>
-      <AuthenticatedTemplate>   
-        <Routes> 
-          <Route path="/" element={<FeedbackReportPage />} />
-          <Route path="feedback-report" element={<FeedbackReportPage />} />
-          <Route path="sap-report" element={<SapReportPage />} />
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Version 0.1
+        </p>
 
-          {/* V2 */}
-          <Route path="litra-overview" element={<SapOverview />} />
 
-        </Routes>
-      </AuthenticatedTemplate>
-      <UnauthenticatedTemplate>
-        <Login/>
-      </UnauthenticatedTemplate>
+        <div>
+            <div>REACT_APP_SERKAN: {process.env.REACT_APP_SERKAN}</div>  
+            <div>REACT_APP_SERKAN_2: {process.env.REACT_APP_SERKAN_2}</div>
+        </div> 
+ 
+
+      </header>
     </div>
   );
 }
+
+export default App;

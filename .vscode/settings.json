@@ -1,8 +1,0 @@
-{
-    "appService.zipIgnorePattern": [
-        "node_modules{,/**}",
-        ".vscode{,/**}"
-    ],
-    "appService.defaultWebAppToDeploy": "/subscriptions/c6798d13-ee61-4edc-9639-1aad1100807c/resourceGroups/digitallabs-atlas-graffitidection/providers/Microsoft.Web/sites/verificationtool-dev",
-    "appService.deploySubpath": "."
-}
