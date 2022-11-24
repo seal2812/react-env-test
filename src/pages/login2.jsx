@@ -8,6 +8,10 @@ console.log("process.env.REACT_APP_SERKAN");
 console.log(process.env.REACT_APP_SERKAN);
 console.log(process.env["REACT_APP_SERKAN"]);
 
+console.log("process.env.REACT_APP_SERKAN_2");
+console.log(process.env.REACT_APP_SERKAN_2);
+console.log(process.env["REACT_APP_SERKAN_2"]);
+
  
 
 export default function Login() {    
@@ -20,6 +24,13 @@ export default function Login() {
                         <h2 className="fp-title">Graffitidetection tool</h2>
                         <div className="madeby">Made by Team AI...9.1</div>
                     </div>
+
+                    <div>
+                        <div>REACT_APP_SERKAN: {process.env.REACT_APP_SERKAN}</div> 
+                        <br></br>
+                        <div>REACT_APP_SERKAN_2: {process.env.REACT_APP_SERKAN_2}</div>
+                    </div>
+
                     <SignInButton />
                 </div>
             </div>
