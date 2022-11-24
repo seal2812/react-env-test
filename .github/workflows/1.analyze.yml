@@ -19,7 +19,7 @@
 #       uses: sonarsource/sonarqube-scan-action@master 
 #       with: 
 #         args: >
-#           -Dsonar.projectKey=graffiti.verificationtool.ui
+#           -Dsonar.projectKey=react-seal-test 
 #       env:
 #         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 #         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }} 

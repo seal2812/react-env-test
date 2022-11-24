@@ -1,8 +1,8 @@
 # Graffitidetection Tool
 This application contains the user interface for the tool used by DSB operations to detect graffiti on the outside of trains
 
-[![code analyze](https://github.com/DanskeStatsbaner/graffiti.verificationtool.ui/actions/workflows/1.analyze.yml/badge.svg)](https://github.com/DanskeStatsbaner/graffiti.verificationtool.ui/actions/workflows/1.analyze.yml)
-[![2.Build and Deploy](https://github.com/DanskeStatsbaner/graffiti.verificationtool.ui/actions/workflows/2.build_deploy.yml/badge.svg)](https://github.com/DanskeStatsbaner/graffiti.verificationtool.ui/actions/workflows/2.build_deploy.yml)
+[![code analyze](https://github.com/DanskeStatsbaner/react-seal-test /actions/workflows/1.analyze.yml/badge.svg)](https://github.com/DanskeStatsbaner/react-seal-test /actions/workflows/1.analyze.yml)
+[![2.Build and Deploy](https://github.com/DanskeStatsbaner/react-seal-test /actions/workflows/2.build_deploy.yml/badge.svg)](https://github.com/DanskeStatsbaner/react-seal-test /actions/workflows/2.build_deploy.yml)
 
 ## Prerequisites
 - NodeJS v14
