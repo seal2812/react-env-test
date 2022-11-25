@@ -9,6 +9,11 @@ on:
       - main
   workflow_dispatch:
 
+env:
+  AZURE_WEBAPP_NAME: react-seal-test   
+  AZURE_WEBAPP_PACKAGE_PATH: 'build'      
+  NODE_VERSION: '16.x'               
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -21,7 +26,7 @@ jobs:
         with:
           node-version: '16.x'
 
-      - name: create .env file
+      - name: add .env file
         run: |
           touch .env
           echo REACT_APP_SERKAN_2 =${{ secrets.REACT_APP_SERKAN_2 }} >> .env
@@ -32,14 +37,18 @@ jobs:
           npm install
           npm run build --if-present
 
-      - name: Zip artifact for deployment 
-        run: zip -r app.zip * .env .next
+      # - name: Zip artifact for deployment 
+      #   run: zip -r app.zip * .env .next
+
+      - name: add process.json
+        run: |
+        echo ‘{ script: “serve”, env: { PM2_SERVE_SPA: “true”, PM2_SERVE_HOMEPAGE: “/index.html” } }’ >> build/process.json
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
           name: node-app
-          path: app.zip
+          path: .
 
   deploy:
     runs-on: ubuntu-latest
@@ -54,14 +63,15 @@ jobs:
         with:
           name: node-app
 
-      - name: Unzip artifact for deployment
-        run: unzip app.zip 
+      # - name: Unzip artifact for deployment
+      #   run: unzip app.zip 
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'react-seal-test'
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_9FF70FCC318742C9B34DB0350AED6B07 }}
-          package: .
+          package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+
