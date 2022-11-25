@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy Node.js app to Azure Web App - react-seal-test
+name: yolo
 
 on:
   push:
@@ -20,6 +20,12 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '16.x'
+
+      - name: create .env file
+        run: |
+          touch .env
+          echo REACT_APP_SERKAN_2 =${{ secrets.REACT_APP_SERKAN_2 }} >> .env
+          echo REACT_APP_SERKAN =${{ secrets.REACT_APP_SERKAN }} >> .env
 
       - name: npm install, build, and test
         run: |
