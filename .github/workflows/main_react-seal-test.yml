@@ -2,7 +2,8 @@ name: yolo
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
   workflow_dispatch:
 
 env:
@@ -10,12 +11,10 @@ env:
   AZURE_WEBAPP_PACKAGE_PATH: '.'      
   NODE_VERSION: '16.x'               
 
-permissions:
-  contents: read
-
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
 
@@ -23,7 +22,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
-cache: 'npm
 
       - name: add .env file
         run: |
@@ -58,14 +56,18 @@ cache: 'npm
         with:
           name: node-app
 
-      - name: Unzip artifact for deployment
+      - name: Unzip zipped artifact
         run: unzip app.zip 
+
+      - name: Delete zipped artifact
+        run: rm app.zip 
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_9FF70FCC318742C9B34DB0350AED6B07 }}
           package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
 

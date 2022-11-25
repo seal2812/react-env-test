@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/8e0234eb-45ab-4ed8-970a-3913980ff60e/AppServices/subscriptions/8e0234eb-45ab-4ed8-970a-3913980ff60e/resourceGroups/Test.Serkan/providers/Microsoft.Web/sites/react-seal-test",
+    "appService.deploySubpath": "."
+}
