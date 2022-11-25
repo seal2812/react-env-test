@@ -37,19 +37,13 @@ jobs:
           npm install
           npm run build --if-present
 
-<<<<<<< HEAD
       - name: Zip artifact for deployment 
         run: zip -r app.zip * .env .next
 
-      - name: add process.json
-        run: |
-        echo ‘{ script: “serve”, env: { PM2_SERVE_SPA: “true”, PM2_SERVE_HOMEPAGE: “/index.html” } }’ >> build/process.json
+      # - name: add process.json
+      #   run: |
+      #   echo ‘{ script: “serve”, env: { PM2_SERVE_SPA: “true”, PM2_SERVE_HOMEPAGE: “/index.html” } }’ >> build/process.json
 
-=======
-      # - name: Zip artifact for deployment 
-      #   run: zip -r app.zip * .env .next
- 
->>>>>>> 31fb5003ecfa613c3bb93b6b910f370cbdbca4fb
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v23
         with:
