@@ -33,4 +33,3 @@ jobs:
       - name: GITREVSHOR- $(git rev-parse --short HEAD)
       - name: GITHUB_BRA- ${{ steps.vars.outputs.branch }}
       - name: GITHUB_SHA- ${{ steps.vars.outputs.sha_short }}"
-
