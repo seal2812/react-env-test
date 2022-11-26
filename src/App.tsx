@@ -9,27 +9,17 @@ console.log("process.env.REACT_APP_SERKAN");
 console.log(process.env.REACT_APP_SERKAN);
 console.log(process.env["REACT_APP_SERKAN"]);
 
-console.log("process.env.REACT_APP_SERKAN_2");
-console.log(process.env.REACT_APP_SERKAN_2);
-console.log(process.env["REACT_APP_SERKAN_2"]);
+console.log("process.env.REACT_APP_COMMIT_ID");
+console.log(process.env.REACT_APP_COMMIT_ID);
+console.log(process.env["REACT_APP_COMMIT_ID"]);
 
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Version 0.2
-        </p>
-
-
-        <div>
-            <div>REACT_APP_SERKAN: {process.env.REACT_APP_SERKAN}</div>  
-            <div>REACT_APP_SERKAN_2: {process.env.REACT_APP_SERKAN_2}</div>
-        </div> 
- 
-
+        <img src={logo} className="App-logo" alt="logo" /> 
+        <div>v: {process.env.REACT_APP_COMMIT_ID}</div> 
       </header>
     </div>
   );
