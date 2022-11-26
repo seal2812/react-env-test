@@ -3,12 +3,15 @@ on:
   push:
     branches:
       - main
-      - feature/**
-  pull_request:
-      types: [opened, synchronize, reopened]  
+      - feature/**  
+  workflow_dispatch:
+
 env:   
   NODE_VERSION: '16.x'     
 
+permissions:
+  contents: read
+  
 jobs: 
   build: 
     runs-on: ubuntu-latest
