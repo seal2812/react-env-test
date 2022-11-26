@@ -1,19 +1,24 @@
-name: ci/cd
+name: ci/cd test
 on:
   push:
     branches:
-      - main
-  pull_request:
-      types: [opened, synchronize, reopened]  
+      - test
+  
+  workflow_dispatch:
+  
 env:
   AZURE_WEBAPP_NAME: react-seal-test   
+  AZURE_WEBAPP_SLOT: 'test'      
   AZURE_WEBAPP_PACKAGE_PATH: '.'      
   NODE_VERSION: '16.x'     
+
+permissions:
+  contents: read
 
 jobs: 
   build-and-deploy: 
     runs-on: ubuntu-latest
-    environment: Production
+    environment: Test
 
     steps:
       - uses: actions/checkout@v3
@@ -25,8 +30,8 @@ jobs:
       - name: add .env file
         run: |
           touch .env
-          echo REACT_APP_SERKAN_2 =${{ secrets.REACT_APP_SERKAN_2 }} >> .env
           echo REACT_APP_SERKAN =${{ secrets.REACT_APP_SERKAN }} >> .env
+          echo REACT_APP_COMMIT_ID =${{ github.event.pull_request.head.sha }} >> .env
 
       - name: npm install, build, and test
         run: | 
@@ -43,6 +48,6 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
-          slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_9FF70FCC318742C9B34DB0350AED6B07 }}
+          slot-name: ${{ env.AZURE_WEBAPP_SLOT }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}
           package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
