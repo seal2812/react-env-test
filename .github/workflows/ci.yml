@@ -22,13 +22,6 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }} 
 
-      - name: npm install, build, and test
-        run: | 
-          npm install
-          npm run build --if-present 
-        env:
-          CI: false
- 
       - name: GITHUB_REF- ${GITHUB_REF#refs/heads/} + GITREVSHOR- $(git rev-parse --short HEAD) 
         shell: bash
         run: |
@@ -39,4 +32,11 @@ jobs:
         run: |
           echo "Branch: ${{ steps.vars.outputs.branch }}"
           echo "Sha: ${{ steps.vars.outputs.sha_short }}"
+          
+      - name: npm install, build, and test
+        run: | 
+          npm install
+          npm run build --if-present 
+        env:
+          CI: false
 
