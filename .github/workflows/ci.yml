@@ -28,9 +28,15 @@ jobs:
           npm run build --if-present 
         env:
           CI: false
-
-      - name: GITHUB_REF- ${GITHUB_REF#refs/heads/}
-      - name: GITREVSHOR- $(git rev-parse --short HEAD)
-      - name: GITHUB_BRA- ${{ steps.vars.outputs.branch }}
-      - name: GITHUB_SHA- ${{ steps.vars.outputs.sha_short }}"
+ 
+      - name: GITHUB_REF- ${GITHUB_REF#refs/heads/} + GITREVSHOR- $(git rev-parse --short HEAD) 
+        shell: bash
+        run: |
+          echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+          echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+          
+      - name: GITHUB_SHA- ${{ steps.vars.outputs.sha_short }}" + GITHUB_BRA- ${{ steps.vars.outputs.branch }}
+        run: |
+          echo "Branch: ${{ steps.vars.outputs.branch }}"
+          echo "Sha: ${{ steps.vars.outputs.sha_short }}"
 
