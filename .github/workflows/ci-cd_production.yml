@@ -2,15 +2,19 @@ name: ci/cd production
 on:
   push:
     branches:
-      - production
-  pull_request:
-      types: [opened, synchronize, reopened]  
+      - production  
+  
+  workflow_dispatch:
+
 env:
   AZURE_WEBAPP_NAME: react-seal-test   
   AZURE_WEBAPP_SLOT: 'Production'      
   AZURE_WEBAPP_PACKAGE_PATH: '.'      
   NODE_VERSION: '16.x'     
 
+permissions:
+  contents: read
+  
 jobs: 
   build-and-deploy: 
     runs-on: ubuntu-latest
