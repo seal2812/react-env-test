@@ -2,8 +2,7 @@ name: ci/cd
 on:
   push:
     branches:
-      - main
-      - feature/**
+      - production
   pull_request:
       types: [opened, synchronize, reopened]  
 env:
@@ -15,7 +14,7 @@ env:
 jobs: 
   build-and-deploy: 
     runs-on: ubuntu-latest
-    environment: ${{ env.AZURE_WEBAPP_SLOT }}
+    environment: Production
 
     steps:
       - uses: actions/checkout@v3

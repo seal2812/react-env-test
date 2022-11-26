@@ -1,0 +1,49 @@
+name: ci/cd
+on:
+  push:
+    branches:
+      - test
+  pull_request:
+      types: [opened, synchronize, reopened]  
+env:
+  AZURE_WEBAPP_NAME: react-seal-test   
+  AZURE_WEBAPP_SLOT: 'test'      
+  AZURE_WEBAPP_PACKAGE_PATH: '.'      
+  NODE_VERSION: '16.x'     
+
+jobs: 
+  build-and-deploy: 
+    runs-on: ubuntu-latest
+    environment: Test
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Node.js version
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }} 
+
+      - name: add .env file
+        run: |
+          touch .env
+          echo REACT_APP_SERKAN =${{ secrets.REACT_APP_SERKAN }} >> .env
+          echo REACT_APP_COMMIT_ID =${{ github.event.pull_request.head.sha }} >> .env
+
+      - name: npm install, build, and test
+        run: | 
+          npm install
+          npm run build --if-present 
+        env:
+          CI: false
+
+      - name: add process.json
+        run: |
+          echo '{ script: "serve", env: { PM2_SERVE_SPA: "true", PM2_SERVE_HOMEPAGE: "/index.html" } }' >> build/process.json
+          
+      - name: 'Deploy to Azure WebApp'
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          slot-name: ${{ env.AZURE_WEBAPP_SLOT }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}
+          package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
