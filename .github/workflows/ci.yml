@@ -1,42 +1,42 @@
-name: ci
-on:
-  push:
-    branches:
-      - main
-      - feature/**  
-  workflow_dispatch:
+# name: ci
+# on:
+#   push:
+#     branches:
+#       - main
+#       - feature/**  
+#   workflow_dispatch:
 
-env:   
-  NODE_VERSION: '16.x'     
+# env:   
+#   NODE_VERSION: '16.x'     
 
-permissions:
-  contents: read
+# permissions:
+#   contents: read
   
-jobs: 
-  build: 
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Set up Node.js version
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ env.NODE_VERSION }} 
+# jobs: 
+#   build: 
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v3
+#       - name: Set up Node.js version
+#         uses: actions/setup-node@v3
+#         with:
+#           node-version: ${{ env.NODE_VERSION }} 
 
-      - name: GITHUB_REF- ${GITHUB_REF#refs/heads/} + GITREVSHOR- $(git rev-parse --short HEAD) 
-        shell: bash
-        run: |
-          echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-          echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+#       - name: GITHUB_REF- ${GITHUB_REF#refs/heads/} + GITREVSHOR- $(git rev-parse --short HEAD) 
+#         shell: bash
+#         run: |
+#           echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+#           echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
           
-      - name: GITHUB_SHA- ${{ steps.vars.outputs.sha_short }}" + GITHUB_BRA- ${{ steps.vars.outputs.branch }}
-        run: |
-          echo "Branch: ${{ steps.vars.outputs.branch }}"
-          echo "Sha: ${{ steps.vars.outputs.sha_short }}"
+#       - name: GITHUB_SHA- ${{ steps.vars.outputs.sha_short }}" + GITHUB_BRA- ${{ steps.vars.outputs.branch }}
+#         run: |
+#           echo "Branch: ${{ steps.vars.outputs.branch }}"
+#           echo "Sha: ${{ steps.vars.outputs.sha_short }}"
           
-      - name: npm install, build, and test
-        run: | 
-          npm install
-          npm run build --if-present 
-        env:
-          CI: false
+#       - name: npm install, build, and test
+#         run: | 
+#           npm install
+#           npm run build --if-present 
+#         env:
+#           CI: false
 
