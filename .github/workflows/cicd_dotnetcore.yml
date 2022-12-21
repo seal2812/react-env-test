@@ -1,0 +1,38 @@
+# name: Build and Deploy
+# on:
+#   push:
+#     branches:
+#     - <branch>
+ 
+# env:
+#   AZURE_APP_SERVICE_NAME: <azureappservice-name>
+#   AZURE_APP_SERVICE_PACKAGE_PATH: '<application-name>/publish/'
+#   AZURE_APP_SERVICE_PROFILE: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}   
+#   DOTNETCORE_VERSION: 6.0.x
+#   WORKING_DIRECTORY: <application-path> 
+ 
+# jobs:
+#   build-deploy:
+#     runs-on: dsb_ubuntu
+#     steps:
+#       - uses: actions/checkout@v2
+#       - name: Setup .NET Core
+#         uses: actions/setup-dotnet@v1
+#         with:
+#           dotnet-version: ${{ env.DOTNETCORE_VERSION }}
+  
+#       - name: npm restore, build, test & publish
+#         run: |
+#           dotnet restore "${{ env.WORKING_DIRECTORY }}"
+#           dotnet build "${{ env.WORKING_DIRECTORY }}" --configuration Release --no-restore
+#           dotnet test "${{ env.WORKING_DIRECTORY }}" --no-build
+#           dotnet publish "${{ env.WORKING_DIRECTORY }}" --configuration Release --no-build --output "${{ env.AZURE_APP_SERVICE_PACKAGE_PATH }}"
+#         env:
+#           CI: false
+
+#       - name: Deploy to Azure WebApp
+#         uses: azure/webapps-deploy@v2
+#         with:
+#           app-name: ${{ env.AZURE_APP_SERVICE_NAME }}
+#           publish-profile: ${{ env.AZURE_APP_SERVICE_PROFILE }}
+#           package: ${{ env.AZURE_APP_SERVICE_PACKAGE_PATH }}

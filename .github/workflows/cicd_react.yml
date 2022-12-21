@@ -5,13 +5,14 @@ on:
     - main
   
 env:
-  AZURE_WEBAPP_NAME: react-seal-test 
-  AZURE_WEBAPP_PACKAGE_PATH: '.' 
-  AZURE_WEBAPP_PROFILE: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}     
+  AZURE_APP_SERVICE_NAME: react-seal-test 
+  AZURE_APP_SERVICE_PACKAGE_PATH: '.' 
+  AZURE_APP_SERVICE_PROFILE: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}     
   NODE_VERSION: '16.x'     
 
+
 jobs: 
-  build-and-deploy: 
+  build-deploy:
     runs-on: ubuntu-latest  
     steps:
       - uses: actions/checkout@v3
@@ -26,17 +27,34 @@ jobs:
           npm run build --if-present 
         env:
           CI: false
+  
+      - name: Version
+        id: set-version
+        run: echo "GITHUB_PACKAGE_VERSION=$(date +'%Y%m%d').$GITHUB_RUN_NUMBER" >> $GITHUB_ENV
+        
+      - name: Publish Artifacts
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          name: ${{ github.event.repository.name }}.${{ env.GITHUB_PACKAGE_VERSION }}
+          path: ${{ env.AZURE_APP_SERVICE_PACKAGE_PATH }}
 
-      - name: add process.json
-        run: |
-          echo '{ script: "serve", env: { PM2_SERVE_SPA: "true", PM2_SERVE_HOMEPAGE: "/index.html" } }' >> build/process.json
-          
-      - name: 'Deploy to Azure WebApp'
+      - name: Deploy to Azure WebApp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: ${{ env.AZURE_WEBAPP_NAME }} 
-          publish-profile: ${{ env.AZURE_WEBAPP_PROFILE }}
-          package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+          app-name: ${{ env.AZURE_APP_SERVICE_NAME }} 
+          publish-profile: ${{ env.AZURE_APP_SERVICE_PROFILE }}
+          package: ${{ env.AZURE_APP_SERVICE_PACKAGE_PATH }}
+ 
+
+
+
+
+
+
+
+
+
+
  
   # build:
   #   runs-on: ubuntu-latest 
