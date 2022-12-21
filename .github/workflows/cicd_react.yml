@@ -30,7 +30,7 @@ jobs:
   
       - name: Version
         id: set-version
-        run: echo "GITHUB_PACKAGE_VERSION=$(date +'%Y%m%d').$GITHUB_RUN_NUMBER" >> $GITHUB_ENV
+        run: echo "GITHUB_PACKAGE_VERSION=D$(date +'%Y%m%d').ID$GITHUB_RUN_ID.C$GITHUB_SHA" >> $GITHUB_ENV
         
       - name: add .env file
         run: |
