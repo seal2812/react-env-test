@@ -19,7 +19,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" /> 
-        <div>v: {process.env.REACT_APP_COMMIT_ID}</div> 
+        <div>v: {process.env.REACT_APP_GITHUB_PACKAGE_VERSION}</div> 
       </header>
     </div>
   );
