@@ -19,7 +19,8 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" /> 
-        <div>v: {process.env.REACT_APP_GITHUB_PACKAGE_VERSION}</div> 
+        <div>package date: {process.env.REACT_APP_GITHUB_PACKAGE_DATE}</div> 
+        <div>package version: {process.env.REACT_APP_GITHUB_PACKAGE_VERSION}</div> 
       </header>
     </div>
   );

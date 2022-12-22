@@ -14,6 +14,8 @@ env:
 jobs: 
   build-deploy:
     runs-on: ubuntu-latest  
+    environment:
+      name: Test
     steps:
       - uses: actions/checkout@v3
       - name: Set up Node.js version
@@ -30,11 +32,13 @@ jobs:
   
       - name: Version
         id: set-version
-        run: echo "GITHUB_PACKAGE_VERSION=D$(date +'%Y%m%d').ID$GITHUB_RUN_ID.C$GITHUB_SHA" >> $GITHUB_ENV
+        run: echo "GITHUB_PACKAGE_DATE=$(date +'%Y%m%d')" >> $GITHUB_ENV
+        run: echo "GITHUB_PACKAGE_VERSION=$GITHUB_RUN_ID" >> $GITHUB_ENV
         
       - name: add .env file
         run: |
           touch .env
+          echo REACT_APP_GITHUB_PACKAGE_DATE =${{ env.GITHUB_PACKAGE_DATE }} >> .env
           echo REACT_APP_GITHUB_PACKAGE_VERSION =${{ env.GITHUB_PACKAGE_VERSION }} >> .env
 
       - name: Deploy to Azure WebApp
