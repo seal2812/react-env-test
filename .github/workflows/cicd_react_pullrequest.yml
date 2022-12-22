@@ -1,0 +1,75 @@
+# name: cicd_react_pullrequest
+
+# on:
+#   pull_request:
+#     branches:
+#     - main
+
+# concurrency: ci-${{ github.event.number }}
+
+# env:
+#   AZURE_APP_SERVICE_NAME: react-seal-test 
+#   AZURE_APP_SERVICE_PACKAGE_PATH: '.' 
+#   AZURE_APP_SERVICE_PROFILE: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}     
+#   AZURE_APP_SERVICE_SLOT: pr-${{ github.event.number }}
+#   NODE_VERSION: '16.x'     
+
+
+# jobs: 
+#   build-deploy:
+#     runs-on: ubuntu-latest  
+#     environment:
+#       name: "PR #${{ github.event.number }}"
+#       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+#     permissions:
+#       pull-requests: write
+      
+#     steps:
+
+# # NEEDS TO BE MOVED START
+
+#       - uses: actions/checkout@v3
+#       - name: Set up Node.js version
+#         uses: actions/setup-node@v3
+#         with:
+#           node-version: ${{ env.NODE_VERSION }} 
+
+#       - name: npm install, build, and test
+#         run: | 
+#           npm install
+#           npm run build --if-present 
+#         env:
+#           CI: false
+  
+#       - name: Version
+#         id: set-version
+#         run: |
+#           echo "GITHUB_PACKAGE_DATE=$(date +'%Y%m%d')" >> $GITHUB_ENV
+#           echo "GITHUB_PACKAGE_VERSION=$GITHUB_RUN_ID" >> $GITHUB_ENV
+ 
+#       - name: add .env file
+#         run: |
+#           touch .env
+#           echo REACT_APP_GITHUB_PACKAGE_DATE =${{ env.GITHUB_PACKAGE_DATE }} >> .env
+#           echo REACT_APP_GITHUB_PACKAGE_VERSION =${{ env.GITHUB_PACKAGE_VERSION }} >> .env
+
+# # NEEDS TO BE MOVED END
+
+#       - name: Deploy to Azure WebApp
+#         uses: azure/webapps-deploy@v2
+#         with:
+#           app-name: ${{ env.AZURE_APP_SERVICE_NAME }} 
+#           publish-profile: ${{ env.AZURE_APP_SERVICE_PROFILE }}
+#           package: ${{ env.AZURE_APP_SERVICE_PACKAGE_PATH }}
+ 
+#       - name: Comment on PR with the preview link
+#         uses: mshick/add-pr-comment@v1
+#         with:
+#           message: |
+#             ## Preview link: https://${{ env.AZURE_APP_SERVICE_NAME }}-${{env.AZURE_APP_SERVICE_SLOT }}.azurewebsites.net 
+            
+#             - Your changes have been deployed to the preview site. The preview site will update as you add more commits to this branch.
+#             - The preview link is shareable, but will be deleted when the pull request is merged or closed.
+#             > *This is an automated message.*
+#           repo-token: ${{ secrets.GITHUB_TOKEN }}
+#           repo-token-user-login: 'github-actions[bot]'
