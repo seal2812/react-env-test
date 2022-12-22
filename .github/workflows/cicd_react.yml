@@ -16,17 +16,30 @@ jobs:
     runs-on: ubuntu-latest 
     steps:
       - uses: actions/checkout@v3
-
       - name: Set up Node.js version
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }} 
 
       - name: npm install, build, and test
         run: | 
           npm install
-          npm run build --if-present  
+          npm run build --if-present 
+        env:
+          CI: false
   
+      - name: Version
+        id: set-version
+        run: |
+          echo "GITHUB_PACKAGE_DATE=$(date +'%Y%m%d')" >> $GITHUB_ENV
+          echo "GITHUB_PACKAGE_VERSION=$GITHUB_RUN_ID" >> $GITHUB_ENV
+ 
+      - name: add .env file
+        run: |
+          touch .env
+          echo REACT_APP_GITHUB_PACKAGE_DATE =${{ env.GITHUB_PACKAGE_DATE }} >> .env
+          echo REACT_APP_GITHUB_PACKAGE_VERSION =${{ env.GITHUB_PACKAGE_VERSION }} >> .env
+
       - name: Zip artifact 
         run: zip -r release.zip * .env .next
 
@@ -49,8 +62,8 @@ jobs:
       - name: Unzip artifact
         run: unzip release.zip
         
-      - name: Delete zip artifact
-        run: rm release.zip
+      # - name: Delete zip artifact
+      #   run: rm release.zip
 
       - name: 'Deploy to Azure'
         id: deploy-to-webapp
